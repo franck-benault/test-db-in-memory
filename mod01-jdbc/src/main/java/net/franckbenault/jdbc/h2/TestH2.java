@@ -16,7 +16,20 @@ public class TestH2 {
         
         PreparedStatement ps2 = conn.prepareStatement("Show tables;");
         ResultSet rs = ps2.executeQuery();
-        System.out.println(rs);
+        
+        int size = 0;
+        try {
+            while(rs.next()){
+                size++;
+            }
+        }
+        catch(Exception ex) {
+            System.out.println("------------------Tablerize.getRowCount-----------------");
+            System.out.println("Cannot get resultSet row count: " + ex);
+            System.out.println("--------------------------------------------------------");
+        }
+        
+        System.out.println("Resultset size "+size);
   
         conn.close();
     }
