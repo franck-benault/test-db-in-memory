@@ -20,8 +20,10 @@ public class DerbyServer implements AbstractDBServer {
 
 	}
 	
-	public void executeQuery(String query) {
-		
+	public int executeQueryUpdate(String query) throws SQLException {
+        PreparedStatement ps2 = connection.prepareStatement(
+        		query );
+        return ps2.executeUpdate();
 	}
 	
 	public int countTables() throws SQLException {
