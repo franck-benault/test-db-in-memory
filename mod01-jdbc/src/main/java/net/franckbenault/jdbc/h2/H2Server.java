@@ -4,19 +4,34 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
-public class TestH2 {
+import net.franckbenault.jdbc.AbstractDBServer;
 
-    public static void main(String[] a)
-            throws Exception {
+public class H2Server implements AbstractDBServer {
+
+	private Connection connection;
+	
+	public void start() throws ClassNotFoundException, SQLException {
+	
         Class.forName("org.h2.Driver");
-        Connection conn = DriverManager.
+        connection = DriverManager.
             getConnection("jdbc:h2:~/test", "sa", "");
-        System.out.println("h2 open");
-        
-        PreparedStatement ps2 = conn.prepareStatement("Show tables;");
+
+	}
+	
+	public int executeQueryUpdate(String query) throws SQLException {
+        PreparedStatement ps2 = connection.prepareStatement(
+        		query );
+        return ps2.executeUpdate();
+	}
+	
+	public int countTables() throws SQLException {
+	
+        PreparedStatement ps2 = connection.prepareStatement(
+        		"Show tables;" );
         ResultSet rs = ps2.executeQuery();
-        
+
         int size = 0;
         try {
             while(rs.next()){
@@ -28,9 +43,11 @@ public class TestH2 {
             System.out.println("Cannot get resultSet row count: " + ex);
             System.out.println("--------------------------------------------------------");
         }
-        
-        System.out.println("Resultset size "+size);
-  
-        conn.close();
-    }
+        return size;
+
+	}
+	
+	public void stop() throws SQLException {
+		connection.close();
+	}
 }
