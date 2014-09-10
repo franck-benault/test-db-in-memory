@@ -15,7 +15,9 @@ public class TestDerby {
         System.out.println("derby open");
 
         PreparedStatement ps2 = conn.prepareStatement(
-        		"Show tables;" );
+        		"select s.schemaname || '.' || t.tablename from sys.systables t, sys.sysschemas s "
+        		+ "where t.schemaid = s.schemaid and t.tabletype = 'T' "
+        		+ "order by s.schemaname, t.tablename" );
         ResultSet rs = ps2.executeQuery();
         System.out.println(rs);
         
