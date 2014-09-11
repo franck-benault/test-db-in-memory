@@ -7,6 +7,7 @@
 	<packaging>pom</packaging>
 	<modules>
 		<module>mod01-jdbc</module>
+		<module>mod02-jpa-hibernate</module>
 	</modules>
 
 	<dependencyManagement>
