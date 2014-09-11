@@ -4,17 +4,31 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
-public class TestHSQLDB {
+import net.franckbenault.jdbc.AbstractDBServer;
 
-    public static void main(String[] a)
-            throws Exception {
+public class HSQLDBServer implements AbstractDBServer {
+
+	private Connection connection;
+	
+	public void start() throws ClassNotFoundException, SQLException {
+	
         Class.forName("org.hsqldb.jdbcDriver");
-        Connection conn = DriverManager.
+        connection = DriverManager.
             getConnection("jdbc:hsqldb:mem:testdb", "sa", "");
-        System.out.println("hsqldb open");
 
-        PreparedStatement ps2 = conn.prepareStatement(
+	}
+	
+	public int executeQueryUpdate(String query) throws SQLException {
+        PreparedStatement ps2 = connection.prepareStatement(
+        		query );
+        return ps2.executeUpdate();
+	}
+	
+	public int countTables() throws SQLException {
+	
+        PreparedStatement ps2 = connection.prepareStatement(
         		"SELECT * FROM INFORMATION_SCHEMA.SYSTEM_TABLES where TABLE_TYPE='TABLE'" );
         ResultSet rs = ps2.executeQuery();
 
@@ -29,10 +43,11 @@ public class TestHSQLDB {
             System.out.println("Cannot get resultSet row count: " + ex);
             System.out.println("--------------------------------------------------------");
         }
-        
-        System.out.println("Resultset size "+size);
-  
-        
-        conn.close();
-    }
+        return size;
+
+	}
+	
+	public void stop() throws SQLException {
+		connection.close();
+	}
 }
