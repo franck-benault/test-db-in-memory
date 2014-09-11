@@ -4,13 +4,15 @@ import static org.junit.Assert.*;
 
 import java.sql.SQLException;
 
+import net.franckbenault.jdbc.DBServerInterface;
+
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class H2ServerTest {
 	
-	private static H2Server server;
+	private static DBServerInterface server;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
