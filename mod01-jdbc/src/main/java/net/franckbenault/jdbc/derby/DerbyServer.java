@@ -6,9 +6,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import net.franckbenault.jdbc.AbstractDBServer;
+import net.franckbenault.jdbc.DBServerInterface;
 
-public class DerbyServer implements AbstractDBServer {
+public class DerbyServer implements DBServerInterface {
 
 	private Connection connection;
 	

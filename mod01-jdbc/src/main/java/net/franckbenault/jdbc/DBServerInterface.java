@@ -2,7 +2,7 @@ package net.franckbenault.jdbc;
 
 import java.sql.SQLException;
 
-public interface AbstractDBServer {
+public interface DBServerInterface {
 
 	void start() throws ClassNotFoundException, SQLException;
 	

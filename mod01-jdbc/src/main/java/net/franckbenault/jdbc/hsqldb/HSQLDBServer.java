@@ -6,9 +6,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import net.franckbenault.jdbc.AbstractDBServer;
+import net.franckbenault.jdbc.DBServerInterface;
 
-public class HSQLDBServer implements AbstractDBServer {
+
+public class HSQLDBServer implements DBServerInterface {
 
 	private Connection connection;
 	
