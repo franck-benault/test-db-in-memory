@@ -1,5 +1,7 @@
 package net.franckbenault.jpa.hibernate.impl;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -31,6 +33,11 @@ public class StudentManagerImpl implements StudentManager {
 	    em.remove(student);
 	    em.getTransaction().commit();
 	   
+	}
+
+	public List<Student> findAllStudents() {
+	    return em.createQuery(
+	            "select s from Student s", Student.class).getResultList();
 	}
 
 }

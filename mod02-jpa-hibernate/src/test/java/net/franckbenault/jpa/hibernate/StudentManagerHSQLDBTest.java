@@ -3,6 +3,7 @@ package net.franckbenault.jpa.hibernate;
 import static org.junit.Assert.*;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import net.franckbenault.jpa.hibernate.impl.StudentManagerImpl;
 
@@ -46,6 +47,17 @@ public class StudentManagerHSQLDBTest extends AbstractTester {
 		int countAfter = countStudentsJDBC(DB_NAME);
 
 		assertEquals(countBefore, countAfter);
+	}
+	
+	@Test
+	public void testfindAllStudents() throws ClassNotFoundException, SQLException {
+		int countBefore = countStudentsJDBC(DB_NAME);
+
+
+		List<Student> students = studentManager.findAllStudents();
+
+		assertNotNull(students);
+		assertEquals(students.size(), countBefore);
 	}
 
 }

@@ -38,7 +38,7 @@ public class AbstractTester {
 				new String[] { "TABLE" });
 		while (mrs.next()) {
 			String tableName = mrs.getString(3);
-			System.out.println("\n\n\n\nTable Name: " + tableName);
+			//System.out.println("\n\n\n\nTable Name: " + tableName);
 
 			ResultSet rs = st.executeQuery("select * from " + tableName);
 			//ResultSetMetaData metadata = rs.getMetaData();
