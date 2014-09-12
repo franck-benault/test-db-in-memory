@@ -8,10 +8,17 @@ import net.franckbenault.jpa.hibernate.Student;
 import net.franckbenault.jpa.hibernate.StudentManager;
 
 public class StudentManagerImpl implements StudentManager {
+	
+	private EntityManagerFactory emf;
+	private EntityManager em;
+	
+	public StudentManagerImpl() {
+	    emf = Persistence.createEntityManagerFactory("JPAService");
+	    em = emf.createEntityManager();		
+	}
 
 	public Student createStudent(Student student) {
-	    EntityManagerFactory emf = Persistence.createEntityManagerFactory("JPAService");
-	    EntityManager em = emf.createEntityManager();
+
 	    em.getTransaction().begin();
 	    em.persist(student);
 	    em.getTransaction().commit();
@@ -19,8 +26,6 @@ public class StudentManagerImpl implements StudentManager {
 	}
 
 	public void removeStudent(Student student) {
-	    EntityManagerFactory emf = Persistence.createEntityManagerFactory("JPAService");
-	    EntityManager em = emf.createEntityManager();
 	    em.getTransaction().begin();
 	    student = em.find(Student.class,student.getId());
 	    em.remove(student);
