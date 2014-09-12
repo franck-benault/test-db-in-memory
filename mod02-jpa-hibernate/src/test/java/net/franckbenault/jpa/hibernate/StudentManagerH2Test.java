@@ -10,10 +10,10 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class StudentManagerHSQLDBTest extends AbstractTester {
+public class StudentManagerH2Test extends AbstractTester {
 
 	private static StudentManager studentManager;
-	private static String DB_NAME = "hsqldb";
+	private static String DB_NAME = "h2";
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -23,7 +23,6 @@ public class StudentManagerHSQLDBTest extends AbstractTester {
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
 	}
-
 
 
 	@Test

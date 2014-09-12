@@ -10,11 +10,11 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class StudentManagerHSQLDBTest extends AbstractTester {
+public class StudentManagerDerbyTest extends AbstractTester  {
 
 	private static StudentManager studentManager;
-	private static String DB_NAME = "hsqldb";
-
+	private static String DB_NAME = "derby";
+	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		studentManager = new StudentManagerImpl(DB_NAME);
