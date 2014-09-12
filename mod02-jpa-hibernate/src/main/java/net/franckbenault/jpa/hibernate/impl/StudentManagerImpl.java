@@ -12,8 +12,8 @@ public class StudentManagerImpl implements StudentManager {
 	private EntityManagerFactory emf;
 	private EntityManager em;
 	
-	public StudentManagerImpl() {
-	    emf = Persistence.createEntityManagerFactory("JPAService");
+	public StudentManagerImpl(String persistenceUnitName) {
+	    emf = Persistence.createEntityManagerFactory(persistenceUnitName);
 	    em = emf.createEntityManager();		
 	}
 

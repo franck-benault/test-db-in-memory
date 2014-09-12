@@ -5,7 +5,6 @@ import static org.junit.Assert.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -15,13 +14,13 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class StudentManagerTest {
+public class StudentManagerHSQLDBTest {
 
 	private static StudentManager studentManager;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		studentManager = new StudentManagerImpl();
+		studentManager = new StudentManagerImpl("hsqldb");
 	}
 
 	@AfterClass
