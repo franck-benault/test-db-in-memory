@@ -8,6 +8,7 @@
 	<modules>
 		<module>mod01-jdbc</module>
 		<module>mod02-jpa-hibernate</module>
+		<module>mod03-jdbc-advanced</module>
 	</modules>
 
 	<dependencyManagement>
