@@ -24,7 +24,7 @@ public class AbstractTester {
 		if(databaseName.equals("h2")) {
 	        Class.forName("org.h2.Driver");
 	        conn = DriverManager.
-	            getConnection("jdbc:h2:~/test;MODE=MYSQL", "sa", "");
+	            getConnection("jdbc:h2:mem:test;MODE=MYSQL", "sa", "");
 		}
 		return conn;
 	}

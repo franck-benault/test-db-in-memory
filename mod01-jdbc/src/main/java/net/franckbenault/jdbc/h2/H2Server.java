@@ -16,7 +16,7 @@ public class H2Server implements DBServerInterface {
 	
         Class.forName("org.h2.Driver");
         connection = DriverManager.
-            getConnection("jdbc:h2:~/test", "sa", "");
+            getConnection("jdbc:h2:mem:test", "sa", "");
 
         //clean all schema before working
         PreparedStatement ps2 = connection.prepareStatement(
