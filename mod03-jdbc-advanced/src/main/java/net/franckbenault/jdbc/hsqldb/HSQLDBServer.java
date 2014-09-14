@@ -1,4 +1,4 @@
-package net.franckbenault.jdbc.h2;
+package net.franckbenault.jdbc.hsqldb;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,21 +8,16 @@ import java.sql.SQLException;
 
 import net.franckbenault.jdbc.DBServerInterface;
 
-public class H2Server implements DBServerInterface {
+
+public class HSQLDBServer implements DBServerInterface {
 
 	private Connection connection;
 	
 	public void start() throws ClassNotFoundException, SQLException {
 	
-        Class.forName("org.h2.Driver");
+        Class.forName("org.hsqldb.jdbcDriver");
         connection = DriverManager.
-            getConnection("jdbc:h2:~/test", "sa", "");
-
-        //clean all schema before working
-        PreparedStatement ps2 = connection.prepareStatement(
-        		"DROP ALL OBJECTS;" );
-        ps2.executeUpdate();
-
+            getConnection("jdbc:hsqldb:mem:testdb", "sa", "");
 
 	}
 	
@@ -35,7 +30,7 @@ public class H2Server implements DBServerInterface {
 	public int countTables() throws SQLException {
 	
         PreparedStatement ps2 = connection.prepareStatement(
-        		"Show tables;" );
+        		"SELECT * FROM INFORMATION_SCHEMA.SYSTEM_TABLES where TABLE_TYPE='TABLE'" );
         ResultSet rs = ps2.executeQuery();
 
         int size = 0;
@@ -55,5 +50,15 @@ public class H2Server implements DBServerInterface {
 	
 	public void stop() throws SQLException {
 		connection.close();
+	}
+
+	public int countConstraints() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public String getDBVersion() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

@@ -17,12 +17,10 @@ public class H2Server implements DBServerInterface {
         Class.forName("org.h2.Driver");
         connection = DriverManager.
             getConnection("jdbc:h2:~/test", "sa", "");
-
-        //clean all schema before working
+        
         PreparedStatement ps2 = connection.prepareStatement(
         		"DROP ALL OBJECTS;" );
         ps2.executeUpdate();
-
 
 	}
 	
@@ -55,5 +53,15 @@ public class H2Server implements DBServerInterface {
 	
 	public void stop() throws SQLException {
 		connection.close();
+	}
+
+	public int countConstraints() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public String getDBVersion() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
