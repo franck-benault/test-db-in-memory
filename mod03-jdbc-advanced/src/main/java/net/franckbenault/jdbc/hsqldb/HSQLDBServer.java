@@ -1,6 +1,7 @@
 package net.franckbenault.jdbc.hsqldb;
 
 import java.sql.Connection;
+import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -29,21 +30,18 @@ public class HSQLDBServer implements DBServerInterface {
 	
 	public int countTables() throws SQLException {
 	
-        PreparedStatement ps2 = connection.prepareStatement(
-        		"SELECT * FROM INFORMATION_SCHEMA.SYSTEM_TABLES where TABLE_TYPE='TABLE'" );
-        ResultSet rs = ps2.executeQuery();
-
+		DatabaseMetaData md = connection.getMetaData();
+        String[] types = {"TABLE"};
+        ResultSet rs = md.getTables(null, null, "%", types);
+	
+		
         int size = 0;
-        try {
-            while(rs.next()){
+        while(rs.next()){
+            	//System.out.println(rs.getString(3));
                 size++;
-            }
-        }
-        catch(Exception ex) {
-            System.out.println("------------------Tablerize.getRowCount-----------------");
-            System.out.println("Cannot get resultSet row count: " + ex);
-            System.out.println("--------------------------------------------------------");
-        }
+           }
+        
+
         return size;
 
 	}
