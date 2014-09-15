@@ -34,7 +34,6 @@ public class HSQLDBServer implements DBServerInterface {
         String[] types = {"TABLE"};
         ResultSet rs = md.getTables(null, null, "%", types);
 	
-		
         int size = 0;
         while(rs.next()){
             	//System.out.println(rs.getString(3));
@@ -50,9 +49,19 @@ public class HSQLDBServer implements DBServerInterface {
 		connection.close();
 	}
 
-	public int countConstraints() {
-		// TODO Auto-generated method stub
-		return 0;
+	public int countConstraints() throws SQLException {
+		
+		String query ="SELECT CONSTRAINT_NAME, TABLE_NAME, TABLE_SCHEMA, TABLE_CATALOG FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS where CONSTRAINT_SCHEMA='PUBLIC'";
+		PreparedStatement ps2 = connection.prepareStatement(
+        		query );
+		ResultSet rs =  ps2.executeQuery();
+      
+        int size = 0;
+        while(rs.next()){
+            	System.out.println("..."+rs.getString(1)+"..."+rs.getString(2)+"..."+rs.getString(3)+"..."+rs.getString(4) );
+                size++;
+           }
+		return size;
 	}
 
 	public String getDBVersion() throws SQLException {

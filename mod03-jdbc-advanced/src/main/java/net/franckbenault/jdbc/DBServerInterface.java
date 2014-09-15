@@ -10,7 +10,7 @@ public interface DBServerInterface {
 	
 	int countTables() throws SQLException;
 	
-	int countConstraints();
+	int countConstraints() throws SQLException;
 	
 	String getDBVersion() throws SQLException;
 	

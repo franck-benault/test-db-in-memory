@@ -53,9 +53,19 @@ public class H2Server implements DBServerInterface {
 		connection.close();
 	}
 
-	public int countConstraints() {
-		// TODO Auto-generated method stub
-		return 0;
+	public int countConstraints() throws SQLException {
+		
+		String query ="SELECT CONSTRAINT_NAME, TABLE_NAME FROM INFORMATION_SCHEMA.CONSTRAINTS";
+		PreparedStatement ps2 = connection.prepareStatement(
+        		query );
+		ResultSet rs =  ps2.executeQuery();
+      
+        int size = 0;
+        while(rs.next()){
+            	System.out.println("..."+rs.getString(1)+"..."+rs.getString(2) );
+                size++;
+           }
+		return size;
 	}
 
 	public String getDBVersion() throws SQLException {

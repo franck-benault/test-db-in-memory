@@ -28,8 +28,19 @@ public class DerbyServerTest {
 	}
 
 	@Test
-	public void testCountTables() throws SQLException {
-		assertEquals(server.countTables(), 0);
+	public void testCountConstraints() throws SQLException {
+		
+		String request = "CREATE TABLE HOTELAVAILABILITY"+
+			    "(HOTEL_ID INT NOT NULL, BOOKING_DATE DATE NOT NULL,"+
+				"ROOMS_TAKEN INT DEFAULT 0, CONSTRAINT YOYO PRIMARY KEY (HOTEL_ID, BOOKING_DATE))";
+
+		server.executeQueryUpdate(request);
+
+		
+		assertEquals(server.countConstraints(), 1);
+		
+		String request2 = "DROP TABLE HOTELAVAILABILITY";
+		server.executeQueryUpdate(request2);
 	}
 	
 	@Test
@@ -38,10 +49,12 @@ public class DerbyServerTest {
 		
 		String request = "CREATE TABLE HOTELAVAILABILITY"+
 			    "(HOTEL_ID INT NOT NULL, BOOKING_DATE DATE NOT NULL,"+
-				"ROOMS_TAKEN INT DEFAULT 0, PRIMARY KEY (HOTEL_ID, BOOKING_DATE))";
+				"ROOMS_TAKEN INT DEFAULT 0, CONSTRAINT YOYO PRIMARY KEY (HOTEL_ID, BOOKING_DATE))";
 
 		server.executeQueryUpdate(request);
 		assertEquals(server.countTables(), 1);
+		
+		
 		
 		String request2 = "DROP TABLE HOTELAVAILABILITY";
 		

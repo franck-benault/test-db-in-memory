@@ -50,9 +50,21 @@ public class DerbyServer implements DBServerInterface {
 		connection.close();
 	}
 
-	public int countConstraints() {
-		// TODO Auto-generated method stub
-		return 0;
+	public int countConstraints() throws SQLException {
+		
+		//String query ="select CONSTRAINT_NAME, CONSTRAINT_TYPE, TABLE_NAME from USER_CONSTRAINTS where CONSTRAINT_NAME like concat(?, '%')";
+		
+		String query ="SELECT c.constraintname, t.tablename FROM sys.sysconstraints c, sys.systables t WHERE c.tableid = t.tableid";
+		PreparedStatement ps2 = connection.prepareStatement(
+        		query );
+		ResultSet rs =  ps2.executeQuery();
+      
+        int size = 0;
+        while(rs.next()){
+            	System.out.println("..."+rs.getString(1)+"..."+rs.getString(2) );
+                size++;
+           }
+		return size;
 	}
 
 	public String getDBVersion() throws SQLException {
