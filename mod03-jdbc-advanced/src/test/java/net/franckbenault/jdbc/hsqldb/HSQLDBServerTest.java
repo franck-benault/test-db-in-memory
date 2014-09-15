@@ -51,5 +51,11 @@ public class HSQLDBServerTest {
 
 	}
 	
+	@Test
+	public void testGetDBVersion() throws SQLException {
+		assertNotNull(server.getDBVersion());
+		assertEquals(server.getDBVersion(), "2.3.2");
+	}
+
 
 }

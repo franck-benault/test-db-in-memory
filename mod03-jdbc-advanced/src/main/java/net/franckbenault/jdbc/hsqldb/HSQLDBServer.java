@@ -55,8 +55,8 @@ public class HSQLDBServer implements DBServerInterface {
 		return 0;
 	}
 
-	public String getDBVersion() {
-		// TODO Auto-generated method stub
-		return null;
+	public String getDBVersion() throws SQLException {
+		DatabaseMetaData md = connection.getMetaData();
+		return md.getDatabaseProductVersion();
 	}
 }

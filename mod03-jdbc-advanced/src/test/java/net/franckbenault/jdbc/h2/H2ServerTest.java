@@ -51,5 +51,11 @@ public class H2ServerTest {
 
 	}
 	
+	@Test
+	public void testGetDBVersion() throws SQLException {
+		assertNotNull(server.getDBVersion());
+		assertEquals(server.getDBVersion(), "1.4.181 (2014-08-06)");
+	}
+
 
 }
