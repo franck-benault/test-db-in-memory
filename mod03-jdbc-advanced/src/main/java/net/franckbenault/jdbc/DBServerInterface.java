@@ -12,7 +12,7 @@ public interface DBServerInterface {
 	
 	int countConstraints();
 	
-	String getDBVersion();
+	String getDBVersion() throws SQLException;
 	
 	void stop() throws SQLException;
 }

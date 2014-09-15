@@ -51,5 +51,11 @@ public class DerbyServerTest {
 
 	}
 	
+	
+	@Test
+	public void testGetDBVersion() throws SQLException {
+		assertNotNull(server.getDBVersion());
+		assertEquals(server.getDBVersion(), "10.11.1.1 - (1616546)");
+	}
 
 }
