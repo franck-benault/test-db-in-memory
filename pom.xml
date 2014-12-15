@@ -9,6 +9,7 @@
 		<module>mod01-jdbc</module>
 		<module>mod02-jpa-hibernate</module>
 		<module>mod03-jdbc-advanced</module>
+		<module>mod04-delete-limit</module>
 	</modules>
 
 	<dependencyManagement>
