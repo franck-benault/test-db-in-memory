@@ -45,10 +45,12 @@ public class H2ServerTest {
 		int res =server.executeQueryCount(request3);
 		assertEquals(res,1);
 		
+		String request4= "delete from PERSON where FIRSTNAME like '%F%' limit 2";
+		res = server.executeQueryUpdate(request4);
+		assertEquals(res,1);
 		
-		
-		String request4 = "DROP TABLE PERSON";
-		server.executeQueryUpdate(request4);
+		String request5 = "DROP TABLE PERSON";
+		server.executeQueryUpdate(request5);
 	}
 	
 	
