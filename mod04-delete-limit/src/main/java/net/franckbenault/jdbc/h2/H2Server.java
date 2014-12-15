@@ -18,7 +18,10 @@ public class H2Server implements DBServerInterface {
         Class.forName("org.h2.Driver");
         connection = DriverManager.
             getConnection("jdbc:h2:mem:test", "sa", "");
-        
+            //getConnection("jdbc:h2:tcp://localhost/~/test;MODE=MySQL", "sa", "");
+
+        		
+        		
         PreparedStatement ps2 = connection.prepareStatement(
         		"DROP ALL OBJECTS;" );
         ps2.executeUpdate();

@@ -45,7 +45,7 @@ public class H2ServerTest {
 		int res =server.executeQueryCount(request3);
 		assertEquals(res,1);
 		
-		String request4= "delete from PERSON where FIRSTNAME like '%F%' limit 2";
+		String request4= "delete from PERSON where PERSON_ID in (1,2) limit 2";
 		res = server.executeQueryUpdate(request4);
 		assertEquals(res,1);
 		
